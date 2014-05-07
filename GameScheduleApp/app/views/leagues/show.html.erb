@@ -1,0 +1,26 @@
+Dates: <%= @league.dates %><br>
+Locations: <%= @league.locations %><br>
+
+<% @league.games.each do |g| %>
+
+	<h3>Location: <%= g.location %></h3>
+	Home Team: <%= g.home_team.name %> <strong>(<%= g.home_score %>)</strong><br>
+	Away Team: <%= g.away_team.name %> <strong>(<%= g.away_score %>)</strong><br>
+	Date: <%= g.date %><br>
+	Time: <%= g.time %><br>
+
+	
+	<hr>
+	
+<% end %>
+
+<%= link_to 'New Game', games_new_path %><br>
+
+<%= link_to 'Delete League', @league, method: :delete, data: {confirm: "Confirm Delete League"} %><br>
+
+<%= link_to 'Back to League', leagues_path %><br>
+
+
+
+
+

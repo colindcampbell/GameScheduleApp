@@ -1,0 +1,11 @@
+
+
+<%= form_for(@team) do |t| %>
+
+	Name: <%= t.text_field :name %><br>
+	Coach: <%= t.text_field :coach %><br>
+	Team Location: <%= t.text_field :location %><br>
+	<%= t.submit "Submit" %>
+
+<% end %>
+

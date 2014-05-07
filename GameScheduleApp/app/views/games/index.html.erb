@@ -1,0 +1,18 @@
+<h2>Current Games</h2>
+
+<% @games.each do |g| %>
+
+	<h3>Location: <%= g.location %></h3>
+	Home Team: <%= g.home_team.name %> <strong>(<%= g.home_score %>)</strong><br>
+	Away Team: <%= g.away_team.name %> <strong>(<%= g.away_score %>)</strong><br>
+	Date: <%= g.date %><br>
+	Time: <%= g.time %><br>
+
+	
+	<hr>
+	
+<% end %>
+
+<%= link_to 'Back to League', leagues_path %><br>
+
+<%= link_to 'New Game', games_new_path %>
