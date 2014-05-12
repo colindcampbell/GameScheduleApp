@@ -1,0 +1,11 @@
+<h2><center>My Leagues</center></h2>
+
+
+
+<% @leagues.each do |l| %>
+				<h3><%= l.name %></h3>
+				<%= link_to 'View League', league_path(l.id) %><br>
+				<hr>
+			<% end %>
+			<%= link_to 'Create a League', new_league_path %>
+

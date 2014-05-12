@@ -1,0 +1,9 @@
+<%= form_for([@league,@game]) do |f| %>
+
+	Location: <%= f.text_field :location %><br>
+	Home Team: <%= collection_select :game, :home_team_id, @teams, :_id, :name %>
+	Away Team: <%= collection_select :game, :away_team_id, @teams, :_id, :name %>
+	Time: <%= f.text_field :time %><br>
+	<%= f.submit "Submit" %>
+
+<% end %>
