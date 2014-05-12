@@ -10,6 +10,7 @@ class LeaguesController < ApplicationController
 	end
 
 	def show
+		@leagues = League.all
 	end
 
 	def create

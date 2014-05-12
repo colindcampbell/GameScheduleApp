@@ -7,13 +7,15 @@ class TeamsController < ApplicationController
 	end
 
 	def new
-		@team = Team.new
+		@league = League.find(params[:league_id])
+	    @team = @league.teams.build
 	end
 
 	def create
-		@team = Team.new(params.require(:team).permit(:name, :coach, :location))
+		@league = League.find(params[:league_id])
+		@team = @league.teams.build(params.require(:team).permit(:name, :coach, :home_city))
 		if @team.save
-			redirect_to teams_path
+			redirect_to @league
 		else
 			render 'new'
 		end

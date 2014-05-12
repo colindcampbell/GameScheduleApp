@@ -1,24 +1,54 @@
-Dates: <%= @league.dates %><br>
-Locations: <%= @league.locations %><br>
+<div class="contain-fluid">
+	<div class="row">
 
-<% @league.games.each do |g| %>
+		<div class="col-sm-4">
+				<% @leagues.each do |l| %>
+						<h3><%= link_to l.name, league_path(l.id) %></h3>
+				<% end %>
+			<br>
+			<%= link_to 'Create a League', new_league_path %><br>
+			<%= link_to 'Delete League', @league, method: :delete, data: {confirm: "Confirm Delete League"} %><br>
+			<%= link_to 'Back to League', leagues_path %><br>
+			<%= link_to 'New Game', new_league_game_path(@league.id) %>
+		</div>
 
-	<h3>Location: <%= g.location %></h3>
-	Home Team: <%= g.home_team.name %> <strong>(<%= g.home_score %>)</strong><br>
-	Away Team: <%= g.away_team.name %> <strong>(<%= g.away_score %>)</strong><br>
-	Date: <%= g.date %><br>
-	Time: <%= g.time %><br>
+		<div class="col-sm-4">
+			<h3><%=@league.name%></h3>
+			<% @league.days.each do |d| %>
+				<button type="button" class="btn btn-info" data-toggle="collapse" data-target="#<%=d.date%>">
+					<%= d.date %>
+				</button><br><br>
+				<div id="<%=d.date%>" class="collapse out">
+					<% d.games.each do |g| %>
+						Location: <%= g.location %><br>
+						Home Team: <%= g.home_team.name %> <strong>(<%= g.home_score %>)</strong><br>
+						Away Team: <%= g.away_team.name %> <strong>(<%= g.away_score %>)</strong><br>
+						Time: <%= g.time %><br><hr>
+					<% end %>
+					<%= link_to '+ Game', new_league_game_path(:league_id => @league.id, :day_id => d.id) %><br><br>
+				</div>
+			<% end %>
+			<%= link_to '+ Day', new_league_day_path(@league) %>
+		</div>
 
-	
-	<hr>
-	
-<% end %>
+		<div class="col-sm-4">
+			<h3>Teams</h3>
+			<% @league.teams.each do |t| %>
+				<%= t.name %><br>
+			<% end %>
+			<%= link_to '+ Team', new_league_team_path(@league) %>
+		</div>
+		
+	</div>
+</div>
 
-<%= link_to 'New Game', games_new_path %><br>
 
-<%= link_to 'Delete League', @league, method: :delete, data: {confirm: "Confirm Delete League"} %><br>
 
-<%= link_to 'Back to League', leagues_path %><br>
+
+
+
+
+
 
 
 

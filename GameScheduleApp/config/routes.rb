@@ -1,23 +1,31 @@
 GameScheduleApp::Application.routes.draw do
+ 
+  resources :leagues, shallow: true do 
+    resources :players
+    resources :days
+    resources :teams
+    resources :games
+  end
+  
 
-  get 'leagues/' => 'leagues#index'
-  get 'leagues/new' => 'leagues#new'
-  get 'leagues/:id' => 'leagues#show', as: :league
-  post 'leagues/' => 'leagues#create'
-  get 'leagues/:id/edit' => 'leagues#edit', as: :edit_league
-  patch 'leagues/:id' => 'leagues#update'
-  delete 'leagues/:id' => 'leagues#destroy'
+  # get 'leagues/' => 'leagues#index'
+  # get 'leagues/new' => 'leagues#new'
+  # get 'leagues/:id' => 'leagues#show', as: :league
+  # post 'leagues/' => 'leagues#create'
+  # get 'leagues/:id/edit' => 'leagues#edit', as: :edit_league
+  # patch 'leagues/:id' => 'leagues#update'
+  # delete 'leagues/:id' => 'leagues#destroy'
 
-  get 'teams/' => 'teams#index'
-  get 'teams/new' => 'teams#new'
-  post 'teams/' => 'teams#create'
-  get 'teams/:id' => 'teams#show', as: :team
-  get 'teams/:id/edit' => 'teams#edit', as: :edit_team
-  patch 'teams/:id' => 'teams#update'
-  delete 'teams/:id' => 'teams#destroy'
+  # get 'teams/' => 'teams#index'
+  # get 'teams/new' => 'teams#new'
+  # post 'teams/' => 'teams#create'
+  # get 'teams/:id' => 'teams#show', as: :team
+  # get 'teams/:id/edit' => 'teams#edit', as: :edit_team
+  # patch 'teams/:id' => 'teams#update'
+  # delete 'teams/:id' => 'teams#destroy'
 
-  get 'games/' => 'games#index'
-  get 'games/new' => 'games#new'
+  # get 'games/' => 'games#index'
+  # get 'games/new' => 'games#new'
 
   get 'players/' => 'players#index'
 
