@@ -1,0 +1,10 @@
+
+<%= form_for([@league,@team]) do |t| %>
+
+	Name: <%= t.text_field :name %><br>
+	Coach: <%= t.text_field :coach %><br>
+	Home City: <%= t.text_field :home_city %><br>
+	<%= t.submit "Submit" %>
+
+<% end %>
+
