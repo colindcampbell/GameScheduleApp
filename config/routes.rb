@@ -1,5 +1,6 @@
 GameScheduleApp::Application.routes.draw do
- 
+ root 'leagues#index'
+
   resources :leagues, shallow: true do 
     resources :players
     resources :days
