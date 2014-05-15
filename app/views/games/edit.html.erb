@@ -1,0 +1,5 @@
+<h1>Edit Game</h1>
+
+<%= render 'edit_form' %>
+
+<%= link_to "Remove", @game, {method: :delete, confirm: "Are you sure?"} %> - <%= link_to "Back", @game.league %>

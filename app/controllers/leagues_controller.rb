@@ -11,12 +11,13 @@ class LeaguesController < ApplicationController
 
 	def show
 		@leagues = League.all
+		@month_abr = [0,'JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','OCT','NOV','DEC']
 	end
 
 	def create
 		@league = League.new(params.require(:league).permit(:name, :dates, :locations, :divisions))
 		if @league.save
-			redirect_to leagues_path
+			redirect_to @league
 		else
 			render 'new'
 		end

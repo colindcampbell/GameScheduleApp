@@ -22,11 +22,22 @@ class DaysController < ApplicationController
   end
 
   def edit
+    @day = Day.find(params[:id])
   end
 
   def update
+    @day = Day.find(params[:id])
+    if @day.update(params.require(:day).permit(:date))
+      redirect_to @day.league
+    else
+      render 'edit'
+    end
   end
 
   def destroy
-  end
+    @day = Day.find(params[:id])
+    @league = @day.league
+    @day.destroy
+    redirect_to @league
+   end
 end

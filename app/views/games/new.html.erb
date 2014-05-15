@@ -1,4 +1,47 @@
-<h1>Create a new game</h1>
 
-<%= render 'form' %>
+<div id="new_game_modal">
+	<div class="modal-header">
+	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	    <h4 class="modal-title" id="myModalLabel">( New Game ) <small> Add a game </small></h4>
+	</div>
+	<div class="modal-body">
+		
+		<%= form_for([@league,@game], :html => {:class => 'form-horizontal', :role => 'form'}) do |f| %>
+			<div class='form-group'>
+				<label for="game-location" class='col-sm-2 control-label'>Location</label>
+				<div class='col-sm-10'>
+					<%= f.text_field :location, :class => 'form-control', :id => 'game-location', :placeholder => 'Location' %>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label for="home-teams" class='col-sm-2 control-label'>Home Team</label>
+				<div class='col-sm-10'>
+					<%= collection_select :game, :home_team_id, @league.teams, :_id, :name, {}, {:class => 'form-control', :id => 'home-teams'} %>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label for="away-teams" class='col-sm-2 control-label'>Away Team</label>
+				<div class='col-sm-10'>
+					<%= collection_select :game, :away_team_id, @league.teams, :_id, :name, {}, {:class => 'form-control', :id => 'away-teams'} %>
+				</div>
+			</div>
+			<div class='form-group'>
+				<label for="game-time" class='col-sm-2 control-label'>Location</label>
+				<div class='col-sm-10'>
+					<%= f.text_field :time, :class => 'form-control', :id => 'game-time', :placeholder => 'Location' %>
+				</div>
+			</div>
+			<div class='form-group'>
+				<div class="col-sm-offset-2 col-sm-10">
+					<right><%= f.submit "Submit", :class => 'btn btn-info' %>
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button></right>
+				</div>
+			</div>
+		<% end %>
+		
+	</div>
+	
+	
+</div>
+
 

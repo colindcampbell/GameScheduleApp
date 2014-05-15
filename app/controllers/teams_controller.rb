@@ -1,6 +1,7 @@
 class TeamsController < ApplicationController
 	
 	before_action :set_team, only: [:edit, :update, :show, :destroy]
+	include TeamsHelper
 
 	def index
 		@teams = Team.all
@@ -22,6 +23,7 @@ class TeamsController < ApplicationController
 	end
 
 	def show
+
 	end
 
 	def update
