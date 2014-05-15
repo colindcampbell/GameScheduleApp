@@ -19,7 +19,8 @@
 
 
 		<div class="col-md-3">
-			<h3>Upcoming Games</h3>
+			<span class="btn btn-default btn-block" data-toggle="collapse" data-target="#scheduleUpcoming" id="myTitle">Schedule</span>
+			<div id="scheduleUpcoming" class="collapse out">
 
 			<% @league.days.sort_by{|dt| dt.date}.each do |d| %>
 
@@ -90,12 +91,14 @@
 			  </div>
 			</div>
 		</div>
+		</div>
 
 
 
 		<div class="col-md-3">
-			<h3>Results</h3>
-
+	
+			<span class="btn btn-default btn-block" data-toggle="collapse" data-target="#schedule" id="myTitle">Results</span>
+			<div id="schedule" class="collapse out">
 			<% @league.days.sort_by{|dt| dt.date}.each do |d| %>
 
 				<% if d.date < Date.today %>
@@ -157,17 +160,19 @@
 				
 			<% end %>
 		</div>
+		</div>
 		
 
 
 		<div class="col-md-3">
-			<h3>Standings</h3>
-			<% Team.sorted(@league.id).each do |t| %>
-				<strong>(<%= t.wins %>)-(<%= t.losses %>)</strong> <%= t.name %><br>
-			<% end %>
-			<%= link_to '+ Team', new_league_team_path(@league) %>
+			<span class="btn btn-default btn-block" data-toggle="collapse" data-target="#standings" id="myTitle">Standings</span>
+				<div id="standings" class="collapse out">
+				<% Team.sorted(@league.id).each do |t| %>
+					<strong>(<%= t.wins %>)-(<%= t.losses %>)</strong> <%= t.name %><br>
+				<% end %>
+				<%= link_to '+ Team', new_league_team_path(@league) %>
+			</div>
 		</div>
-		
 	</div>
 </div>
 
