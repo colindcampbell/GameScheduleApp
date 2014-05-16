@@ -9,7 +9,6 @@ class LeaguesController < ApplicationController
 
 	def new
 		@league = League.new
-		@dumb_league = League.find(params[:league_id => '5371633e3662360002000000'])
 		#@league.user_id = current_user
 	end
 
