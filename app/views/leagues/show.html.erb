@@ -1,8 +1,5 @@
 
 
-
-
-
 <div class="container-fluid">
 	<div class="row">
 
@@ -98,7 +95,7 @@
 			<span class="btn btn-default btn-block" data-toggle="collapse" data-target="#standings">
 				<p id ="myTitle" name="standingsTitle">( Standings )</p>
 			</span>
-			<div id="standings" class="collapse out">
+			<div id="standings" class="collapse in">
 				<div class="list-group">
 					<% Team.sorted(@league.id).each do |t| %>
 						
@@ -123,7 +120,7 @@
 			<span class="btn btn-default btn-block" data-toggle="collapse" data-target="#schedule">
 				<p id="myTitle" name="resultsTitle">( Results )</p>
 			</span>
-				<div id="schedule" class="collapse out">
+				<div id="schedule" class="collapse in">
 				<% @league.days.sort_by{|dt| dt.date}.each do |d| %>
 
 					<% if d.date < Date.today %>

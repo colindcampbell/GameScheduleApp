@@ -4,6 +4,7 @@ class LeaguesController < ApplicationController
 
 	def index
 		@leagues = League.all
+		#@league = League.where(:user_id => current_user)
 	end
 
 	def new
@@ -15,8 +16,6 @@ class LeaguesController < ApplicationController
 		@league = League.find(params[:id])
 		#For adding user specific leagues
 		#@leagues = League.where(:user_id => current_user)
-		#in User model has_many :leagues
-		#in League model belongs_to :user
 		@leagues = League.all
 	end
 
