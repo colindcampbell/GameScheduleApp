@@ -12,6 +12,7 @@
 					<div class="btn-group-vertical btn-group-justified">
 						<%= link_to l.name, league_path(l.id), class: 'btn btn-primary btn-block', id: 'myTitle' %>
 					</div>
+					<%= link_to 'Delete league', @league, method: :delete, data: {confirm: "Are you sure you want to delete #{@league.name}"}%>
 				<% end %>
 		
 			</div>
