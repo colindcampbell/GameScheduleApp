@@ -11,6 +11,8 @@ class Team
 
   belongs_to :league
 
+  validates_presence_of :name, message:'( this team needs a name )'
+
 
   #on the show page we call this method with the league ID when we are listing the teams with the each loop. It sorts the list by win percentage 
   def self.sorted(league_id)
@@ -23,11 +25,14 @@ class Team
   end
 
   def win_percentage
-  	if (self.wins+self.losses) > 0
+  	if self.wins > 0
 	  	self.wins.to_f/(self.wins+self.losses)
-	  else 
-	  	-1
-	  end
+	  elsif self.wins == 0 && self.losses > 0
+	  	-(self.losses)
+	  else
+      -50000
+    end
+
 	end
 	
 

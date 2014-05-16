@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 @import url(http://fonts.googleapis.com/css?family=Ubuntu);
+@import url(http://fonts.googleapis.com/css?family=Roboto);
 
 #myTitle{
 	font-size: 30px;
@@ -39,3 +40,9 @@
 	margin-bottom: 5px;
 	font-family: 'Ubuntu', tahoma;
 }
+
+
+ body{
+ 	font-family: 'Roboto', helvetica;
+ 	padding-top: 70px;
+ }

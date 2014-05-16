@@ -5,6 +5,14 @@
 	    <h4 class="modal-title" id="myModalLabel">( New Team ) <small> Add a team to <%= @league.name%></small></h4>
 	</div>
 	<div class="modal-body">
+
+		<% if @team.errors.any? %>
+		    <ul class="list-group">
+		      <% @team.errors.full_messages.each do |message| %>
+		        <li class="list-group-item list-group-item-danger"><%= message %></li>
+		      <% end %>
+		    </ul>
+		  <% end %>
 		
 		<%= form_for([@league,@team], :html => {:class => 'form-horizontal', :role => 'form'}) do |f| %>
 			<div class='form-group'>

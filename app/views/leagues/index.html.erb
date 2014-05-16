@@ -1,21 +1,26 @@
 
-<span class="btn btn-default btn-block" data-toggle="collapse" data-target="#viewLeagues" id="myTitle">[ Leagues ]</span>
-	<div id="viewLeagues" class="collapse out">
-		<% @leagues.each do |l| %>
-			<h3><%= l.name %></h3>
-			<%= link_to 'View League', league_path(l.id) %><br>
-			<hr>
-		<% end %>
-		<button data-toggle="modal" data-target="#leagueModal" data-remote="<%= new_league_path %> #new_league_modal" class="btn btn-default btn-block">+ League</button><br>
-		<div class="modal fade" id="leagueModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-		  <div class="modal-dialog">
-		    <div class="modal-content">
-		    </div>
-		  </div>
-		</div>
-	</div>
+<div class="container=fluid">
+	<div class="row">
+		<div class="col-md-4"></div>
+		<div class="col-md-4">
 
-	<div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<% @leagues.each do |l| %>
+				<div class="btn-group-vertical btn-group-justified">
+					<%= link_to l.name, league_path(l.id), class: 'btn btn-default btn-block', id: 'myTitle' %>
+				</div>
+			<% end %>
+
+			<button data-toggle="modal" data-target="#leagueModal" data-remote="<%= new_league_path %> #new_league_modal" class="btn btn-default btn-block">+ League</button><br>
+				
+		</div>
+		<div class="col-md-4"></div>
+	</div>
+</div>
+		
+		
+	
+
+<div class="modal fade" id="userModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
     </div>
@@ -23,6 +28,12 @@
 </div>
 <div class="modal fade" id="signinModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="leagueModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
     <div class="modal-content">
     </div>
   </div>

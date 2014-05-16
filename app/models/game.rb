@@ -55,6 +55,12 @@ class Game
     end
   end
 
+  # validate :teams_not_same
+  # def teams_not_same()
+  #   if self.home_team == self.away_team
+  #     errors.add(:home_team, 'Pick two different teams!')
+  #   end
+  # end
   			
   		
   #You can build a game with home and away teams (Game.create)
