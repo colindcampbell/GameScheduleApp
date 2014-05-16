@@ -8,6 +8,8 @@ GameScheduleApp::Application.routes.draw do
     resources :games
   end
   
+  resources :users, only: [:new, :create]
+  resources :sessions, only: [:new, :create, :destroy]
 
   # get 'leagues/' => 'leagues#index'
   # get 'leagues/new' => 'leagues#new'

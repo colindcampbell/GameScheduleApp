@@ -8,7 +8,6 @@ class GamesController < ApplicationController
 	def new
 		@game = Game.new
 		@league = League.find(params[:league_id])
-		@teams = Team.all
 		@@day = Day.find(params[:day_id])
 	end
 
@@ -33,12 +32,13 @@ class GamesController < ApplicationController
 	def update
 		@game = Game.find(params[:id])
 		@l = @game.league
-    	@teams = @l.teams
-	    if @game.update(params.require(:game).permit(:location, :time, :sport, :home_team_id, :home_score, :away_team_id, :away_score))
-	      redirect_to @game.league
-	    else
-	      render 'edit'
-	    end
+  	@teams = @l.teams
+    if @game.update(params.require(:game).permit(:location, :time, :sport, :home_team_id, :home_score, :away_team_id, :away_score, :final))
+      @game.outcome
+      redirect_to @game.league
+    else
+      render 'edit'
+    end
 	end
 
 	def destroy

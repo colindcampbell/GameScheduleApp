@@ -2,7 +2,7 @@
 <div id="new_game_modal">
 	<div class="modal-header">
 	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	    <h4 class="modal-title" id="myModalLabel">( New Game ) <small> Add a game </small></h4>
+	    <h4 class="modal-title" id="myModalLabel">( New Game ) <small> Add a game to <%= Day.find(params[:day_id]).date.strftime("%A, %b %d") %> </small></h4>
 	</div>
 	<div class="modal-body">
 		

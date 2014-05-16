@@ -7,11 +7,16 @@ class LeaguesController < ApplicationController
 
 	def new
 		@league = League.new
+		#@league.user_id = current_user
 	end
 
 	def show
+		@league = League.find(params[:id])
+		#For adding user specific leagues
+		#@leagues = League.where(:user_id => current_user)
+		#in User model has_many :leagues
+		#in League model belongs_to :user
 		@leagues = League.all
-		@month_abr = [0,'JAN','FEB','MAR','APR','MAY','JUN','JUL','AUG','OCT','NOV','DEC']
 	end
 
 	def create

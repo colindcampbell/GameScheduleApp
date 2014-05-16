@@ -23,7 +23,6 @@ class TeamsController < ApplicationController
 	end
 
 	def show
-
 	end
 
 	def update
@@ -35,8 +34,9 @@ class TeamsController < ApplicationController
 	end
 
 	def destroy
+		@league = @team.league
 		@team.destroy
-		redirect_to teams_path
+		redirect_to @league
 	end
 
 	private

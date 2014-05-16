@@ -8,6 +8,6 @@ class League
   has_many :days
   has_many :games
   has_many :teams
-
-
+  belongs_to :user
+  
 end
