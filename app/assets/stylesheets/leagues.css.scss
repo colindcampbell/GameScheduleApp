@@ -7,6 +7,7 @@
 
 #myTitle{
 	font-size: 30px;
+	color: #555;
 	text-align: center;
 	font-family: Tahoma;
 	position: relative;
@@ -16,6 +17,7 @@
 
 #scheduleTitle{
 	font-size: 30px;
+	color: #555;
 	text-align: center;
 	font-family: Tahoma;
 	position: relative;
@@ -25,6 +27,7 @@
 
 #standingsTitle{
 	font-size: 30px;
+	color: #555;
 	text-align: center;
 	font-family: Tahoma;
 	position: relative;
@@ -34,6 +37,7 @@
 
 #resultsTitle{
 	font-size: 30px;
+	color: #555;
 	text-align: center;
 	font-family: Tahoma;
 	position: relative;
@@ -45,8 +49,10 @@
  body{
  	font-family: 'Roboto', helvetica;
  	padding-top: 70px;
+ 	background-color: #bbb
  }
 
  #standings{
  	margin-bot:0px;
  }
+
