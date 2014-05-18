@@ -4,14 +4,20 @@
 		<div class="col-md-3"></div>
 		<div class="col-md-6">
 
-			<% @leagues.sort{|a,b| a.user.name <=> b.user.name}.each do |l| %>
-				<div class="btn-group-vertical btn-group-justified">
-					<%= link_to "#{l.name} ( #{l.user.name} )", league_path(l.id), class: 'btn btn-default btn-block', id: 'myTitle' %>
-				</div>
-			<% end %>
-			
-			<% if session[:remember_token] %>
-				<button data-toggle="modal" data-target="#leagueModal" data-remote="<%= new_league_path %> #new_league_modal" class="btn btn-default btn-block">+ League</button><br>
+			<% if @leagues.any? %>
+				<% @leagues.sort{|a,b| a.user.name <=> b.user.name}.each do |l| %>
+					<div class="btn-group-vertical btn-group-justified">
+						<%= link_to "#{l.name} ( #{l.user.name} )", league_path(l.id), class: 'btn btn-default btn-block', id: 'myTitle' %>
+					</div>
+				<% end %>
+				
+				<% if session[:remember_token] %>
+					<button data-toggle="modal" data-target="#leagueModal" data-remote="<%= new_league_path %> #new_league_modal" class="btn btn-default btn-block">+ League</button><br>
+				<% end %>
+			<% else %>
+
+				<h2><i><center>There are no leagues</center></i></h2>
+
 			<% end %>
 				
 		</div>

@@ -1,6 +1,6 @@
 class LeaguesController < ApplicationController
 	before_action :set_league, only: [:edit, :update, :show, :destroy]
-	before_action :authenticate_user, only: [:new, :create, :edit, :update, :destroy]
+	
 
 	def index
 		@leagues = League.all
