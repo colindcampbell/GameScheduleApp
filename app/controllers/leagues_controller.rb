@@ -20,7 +20,7 @@ class LeaguesController < ApplicationController
 	end
 
 	def create
-		@league = League.new(params.require(:league).permit(:name, :dates, :locations, :divisions))
+		@league = League.new(params.require(:league).permit(:name, :start_date, :end_date, :locations, :divisions))
 		@league.user_id = current_user.id
 		if @league.save
 			redirect_to @league
@@ -30,7 +30,7 @@ class LeaguesController < ApplicationController
 	end
 
 	def update
-		if @league.update_attributes(params.require(:league).permit(:name, :dates, :locations, :divisions))
+		if @league.update_attributes(params.require(:league).permit(:name, :start_date, :end_date, :locations, :divisions))
 			redirect_to @league
 		else
 			render 'edit'

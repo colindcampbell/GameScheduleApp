@@ -41,8 +41,7 @@
 					<% end %>
 
 					<div id="<%=d.date%>" class="collapse out">
-						<div class="list-group">
-
+						
 	  					<% d.games.each do |g| %>
 	  						<% if session[:remember_token] && session[:remember_token] == @league.user_id %>
 									<a data-toggle="modal" data-target="#<%= g.id %>" data-remote="<%= edit_game_path(g) %> #edit_game_modal" class="btn btn-default btn-block list-group-item">
@@ -59,13 +58,13 @@
 									  </div>
 									</div>
 								<% else %>
-									<a class="btn btn-default btn-block list-group-item">
+									<div class="list-group-item">
 										<center><h4 class="list-group-item-heading"><%= g.time %> @ <%= g.location %></h4>
 											<strong>(<%= g.home_score %>) <%= g.home_team.name %></strong>
 											<br>-vs-<br>
 											<strong>(<%= g.away_score %>) <%= g.away_team.name %></strong>
 										</center>
-									</a>
+									</div>
 								<% end %>
 							<% end %>
 							
@@ -74,7 +73,7 @@
 									+ Game to <%= d.date.strftime("%A, %b %d") %>
 								</a>
 							<% end %>
-						</div>
+						
 						<div class="modal fade" id="<%= d.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 						  <div class="modal-dialog">
 						    <div class="modal-content">

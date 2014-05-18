@@ -14,15 +14,14 @@
 				<div class='col-xs-6'><h4 style="text-align:right">Home City:</h4></div>
 				<div class='col-xs-6'><h4><%= @team.home_city %></h4></div>
 			</div>
-			<div class="row">
-
-				<div class='col-xs-12'><center><h4>Roster</h4></center></div>
-			</div>
+			
 			<br>
 			<div class="row">
 				<div class="col-12" style="float:right">
-					<button type="button" class="btn btn-info" data-dismiss="modal">Edit</button>
-					<%= link_to 'Delete', @team, method: :delete, class: 'btn btn-danger', data: {confirm: "Are you sure you want to delete #{@team.name}"} %>
+					<% if session[:remember_token] && session[:remember_token] == current_user.id %>
+						<button type="button" class="btn btn-info" data-dismiss="modal">Edit</button>
+						<%= link_to 'Delete', @team, method: :delete, class: 'btn btn-danger', data: {confirm: "Are you sure you want to delete #{@team.name}"} %>
+					<% end %>
 					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				</div>
 			</div>

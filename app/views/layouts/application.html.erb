@@ -31,10 +31,10 @@
             </li>
           <% else %>
             <li>
-              <a data-toggle="modal" data-target="#userModal" data-remote="<%= new_user_path(current_user) %> #new_user_modal" class="btn btn-default btn-block">Sign Up</a>
+              <a data-toggle="modal" data-target="#userModal" data-remote="<%= new_user_path(current_user) %> #new_user_modal" >Sign Up</a>
             </li>
   		      <li>
-              <a data-toggle="modal" data-target="#signinModal" data-remote="<%= new_session_path(current_user) %> #new_session_modal" class="btn btn-default btn-block">Sign In</a>
+              <a data-toggle="modal" data-target="#signinModal" data-remote="<%= new_session_path(current_user) %> #new_session_modal">Sign In</a>
             </li>
           <% end %>
         </ul>

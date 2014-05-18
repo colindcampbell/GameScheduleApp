@@ -17,15 +17,26 @@
 						<div class="btn-group-vertical btn-group-justified">
 							<%= link_to l.name, league_path(l.id), class: 'btn btn-default btn-block', id: 'myTitle' %>
 						</div>
+							<div class="list-group-item">
+									<strong class="list-group-item-text">This league runs from <%= l.start_date.strftime("%A, %b %d") %> through <%= l.end_date.strftime("%A, %b %d") %>. Games will be played at <%=l.locations%>.</strong>
+							</div>
 							<div class="btn-group btn-group-justified">
 							  <div class="btn-group">
-									<button data-toggle="modal" data-target="#<%= l.id %>day" data-remote="<%= edit_league_path(l) %> #edit_day_modal" class="btn btn-default" >
+									<button data-toggle="modal" data-target="#<%= l.id %>league" data-remote="<%= edit_league_path(l) %> #edit_league_modal" class="btn btn-default" >
 										<span class="glyphicon glyphicon-edit"></span>
+									</button>
+									<div class="modal fade" id="<%= l.id %>league" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+									  <div class="modal-dialog">
+									    <div class="modal-content">
+									    </div>
+									  </div>
+									</div>
 							  </div>
 							  <div class="btn-group">
 							    <button type="button" class="btn btn-default"><%= link_to 'Delete', l, method: :delete, data: {confirm: "Are you sure you want to delete #{l.name}"}%></button>
 							  </div>
 							</div>
+
 							<br>
 						
 					<% end %>
@@ -71,6 +82,9 @@
 					<span class="btn btn-default btn-block">
 						<p id="myTitle" name="scheduleTitle">( <%=@league.name%> )</p>
 					</span>
+					<div class="list-group-item">
+							<strong class="list-group-item-text">This league starts <%= @league.start_date.strftime("%A, %b %d") %> and runs through <%= @league.end_date.strftime("%A, %b %d") %>. Games will be played at <%=@league.locations%>.</strong>
+					</div>
 					<%= link_to 'Back to Leagues', leagues_path, class: 'btn btn-default btn-block' %>
 				
 				<br>

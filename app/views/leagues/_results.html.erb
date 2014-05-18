@@ -30,54 +30,49 @@
 								</div>
 							</div>
 						<% else %>
-
 							<button class="btn btn-warning btn-lrg btn-block" data-toggle="collapse" data-target="#<%=d.date%>" >
 							<%= d.date.strftime("%A, %b %d") %>
 							</button>
-					
 						<% end %>
 
 						<div id="<%=d.date%>" class="collapse out">
-							<div class="list-group">
 
-		  					<% d.games.each do |g| %>
-									<% if session[:remember_token] && session[:remember_token] == @league.user_id %>
-									<a data-toggle="modal" data-target="#<%= g.id %>" data-remote="<%= edit_game_path(g) %> #edit_game_modal" class="btn btn-default btn-block list-group-item">
-										<center><h4 class="list-group-item-heading"><%= g.time %> @ <%= g.location %></h4>
-											<strong>(<%= g.home_score %>) <%= g.home_team.name %></strong>
-											<br>-vs-<br>
-											<strong>(<%= g.away_score %>) <%= g.away_team.name %></strong>
-										</center>
-									</a>
-									<div class="modal fade" id="<%= g.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-									  <div class="modal-dialog">
-									    <div class="modal-content">
-									    </div>
-									  </div>
-									</div>
-								<% else %>
-									<a class="btn btn-default btn-block list-group-item">
-										<center><h4 class="list-group-item-heading"><%= g.time %> @ <%= g.location %></h4>
-											<strong>(<%= g.home_score %>) <%= g.home_team.name %></strong>
-											<br>-vs-<br>
-											<strong>(<%= g.away_score %>) <%= g.away_team.name %></strong>
-										</center>
-									</a>
-								<% end %>
-							<% end %>
-								
+	  					<% d.games.each do |g| %>
 								<% if session[:remember_token] && session[:remember_token] == @league.user_id %>
-									<a data-toggle="modal" data-target="#<%= d.id %>game" data-remote="<%= new_league_game_path(:league_id => @league.id, :day_id => d.id) %> #new_game_modal" class="btn btn-default btn-block list-group-item">
-										+ Game to <%= d.date.strftime("%A, %b %d") %>
-									</a>
-								<% end %>
-								<div class="modal fade" id="<%= d.id %>game" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+								<a data-toggle="modal" data-target="#<%= g.id %>" data-remote="<%= edit_game_path(g) %> #edit_game_modal" class="btn btn-default btn-block list-group-item">
+									<center><h4 class="list-group-item-heading"><%= g.time %> @ <%= g.location %></h4>
+										<strong>(<%= g.home_score %>) <%= g.home_team.name %></strong>
+										<br>-vs-<br>
+										<strong>(<%= g.away_score %>) <%= g.away_team.name %></strong>
+									</center>
+								</a>
+								<div class="modal fade" id="<%= g.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 								  <div class="modal-dialog">
 								    <div class="modal-content">
 								    </div>
 								  </div>
 								</div>
-
+							<% else %>
+								<div class="list-group-item">
+									<center><h4 class="list-group-item-heading"><%= g.time %> @ <%= g.location %></h4>
+										<strong>(<%= g.home_score %>) <%= g.home_team.name %></strong>
+										<br>-vs-<br>
+										<strong>(<%= g.away_score %>) <%= g.away_team.name %></strong>
+									</center>
+								</div>
+							<% end %>
+						<% end %>
+							
+							<% if session[:remember_token] && session[:remember_token] == @league.user_id %>
+								<a data-toggle="modal" data-target="#<%= d.id %>game" data-remote="<%= new_league_game_path(:league_id => @league.id, :day_id => d.id) %> #new_game_modal" class="btn btn-default btn-block list-group-item">
+									+ Game to <%= d.date.strftime("%A, %b %d") %>
+								</a>
+							<% end %>
+							<div class="modal fade" id="<%= d.id %>game" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+							  <div class="modal-dialog">
+							    <div class="modal-content">
+							    </div>
+							  </div>
 							</div>
 						</div>
 					<% end %>
