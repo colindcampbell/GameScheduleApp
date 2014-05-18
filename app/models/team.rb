@@ -25,12 +25,14 @@ class Team
   end
 
   def win_percentage
-  	if self.wins > 0
+    if self.wins>0 && self.losses == 0
+      self.wins
+  	elsif self.wins > 0
 	  	self.wins.to_f/(self.wins+self.losses)
 	  elsif self.wins == 0 && self.losses > 0
 	  	-(self.losses)
 	  else
-      -50000
+      -500000
     end
 
 	end
