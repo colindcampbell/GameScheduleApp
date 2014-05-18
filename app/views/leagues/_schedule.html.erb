@@ -6,54 +6,74 @@
 			<% @league.days.sort_by{|dt| dt.date}.each do |d| %>
 
 				<% if d.date >= Date.today %>
-					<div class="btn-group btn-group-justified">
-						<div class="btn-group" style="width:66%">
-							<button class="btn btn-info btn-lrg" data-toggle="collapse" data-target="#<%=d.date%>" >
-								<%= d.date.strftime("%A, %b %d") %>
-							</button>
-						</div>
-						<div class="btn-group" style="width:17%">
-							<button data-toggle="modal" data-target="#<%= d.id %>day" data-remote="<%= edit_day_path(d) %> #edit_day_modal" class="btn btn-default" >
-								<span class="glyphicon glyphicon-edit"></span>
-							</button>
-							<div class="modal fade" id="<%= d.id %>day" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-							  <div class="modal-dialog modal-sm">
-							    <div class="modal-content">
-							    </div>
-							  </div>
+					<% if session[:remember_token] && session[:remember_token] == @league.user_id %>
+						<div class="btn-group btn-group-justified">
+							<div class="btn-group" style="width:66%">
+								<button class="btn btn-info btn-lrg" data-toggle="collapse" data-target="#<%=d.date%>" >
+									<%= d.date.strftime("%A, %b %d") %>
+								</button>
+							</div>
+							<div class="btn-group" style="width:17%">
+								<button data-toggle="modal" data-target="#<%= d.id %>day" data-remote="<%= edit_day_path(d) %> #edit_day_modal" class="btn btn-default" >
+									<span class="glyphicon glyphicon-edit"></span>
+								</button>
+								<div class="modal fade" id="<%= d.id %>day" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+								  <div class="modal-dialog modal-sm">
+								    <div class="modal-content">
+								    </div>
+								  </div>
+								</div>
+							</div>
+							<div class="btn-group" style="width:17%">
+								<button class="btn btn-default col-sm-2">
+									<a data-confirm="Are you sure?" data-method="delete" href="/days/<%= d.id %>" rel="nofollow">
+										<span class="glyphicon glyphicon-remove"></span>
+									</a>
+								</button>
 							</div>
 						</div>
-						<div class="btn-group" style="width:17%">
-							<button class="btn btn-default col-sm-2">
-								<a data-confirm="Are you sure?" data-method="delete" href="/days/<%= d.id %>" rel="nofollow">
-									<span class="glyphicon glyphicon-remove"></span>
-								</a>
-							</button>
-						</div>
-					</div>
+					<% else %>
+					
+						<button class="btn btn-info btn-lrg btn-block" data-toggle="collapse" data-target="#<%=d.date%>" >
+							<%= d.date.strftime("%A, %b %d") %>
+						</button>
+					
+					<% end %>
 
 					<div id="<%=d.date%>" class="collapse out">
 						<div class="list-group">
 
 	  					<% d.games.each do |g| %>
-								<a data-toggle="modal" data-target="#<%= g.id %>" data-remote="<%= edit_game_path(g) %> #edit_game_modal" class="btn btn-default btn-block list-group-item">
-									<center><h4 class="list-group-item-heading"><%= g.time %> @ <%= g.location %></h4>
-										<strong>(<%= g.home_score %>) <%= g.home_team.name %></strong>
-										<br>-vs-<br>
-										<strong>(<%= g.away_score %>) <%= g.away_team.name %></strong>
-									</center>
-								</a>
-								<div class="modal fade" id="<%= g.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-								  <div class="modal-dialog">
-								    <div class="modal-content">
-								    </div>
-								  </div>
-								</div>
+	  						<% if session[:remember_token] && session[:remember_token] == @league.user_id %>
+									<a data-toggle="modal" data-target="#<%= g.id %>" data-remote="<%= edit_game_path(g) %> #edit_game_modal" class="btn btn-default btn-block list-group-item">
+										<center><h4 class="list-group-item-heading"><%= g.time %> @ <%= g.location %></h4>
+											<strong>(<%= g.home_score %>) <%= g.home_team.name %></strong>
+											<br>-vs-<br>
+											<strong>(<%= g.away_score %>) <%= g.away_team.name %></strong>
+										</center>
+									</a>
+									<div class="modal fade" id="<%= g.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+									  <div class="modal-dialog">
+									    <div class="modal-content">
+									    </div>
+									  </div>
+									</div>
+								<% else %>
+									<a class="btn btn-default btn-block list-group-item">
+										<center><h4 class="list-group-item-heading"><%= g.time %> @ <%= g.location %></h4>
+											<strong>(<%= g.home_score %>) <%= g.home_team.name %></strong>
+											<br>-vs-<br>
+											<strong>(<%= g.away_score %>) <%= g.away_team.name %></strong>
+										</center>
+									</a>
+								<% end %>
 							<% end %>
-
-							<a data-toggle="modal" data-target="#<%= d.id %>" data-remote="<%= new_league_game_path(:league_id => @league.id, :day_id => d.id) %> #new_game_modal" class="btn btn-default btn-block list-group-item">
+							
+							<% if session[:remember_token] && session[:remember_token] == @league.user_id %>
+								<a data-toggle="modal" data-target="#<%= d.id %>" data-remote="<%= new_league_game_path(:league_id => @league.id, :day_id => d.id) %> #new_game_modal" class="btn btn-default btn-block list-group-item">
 									+ Game to <%= d.date.strftime("%A, %b %d") %>
-							</a>
+								</a>
+							<% end %>
 						</div>
 						<div class="modal fade" id="<%= d.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 						  <div class="modal-dialog">
@@ -66,4 +86,10 @@
 
 			<% end %>
 		</div>
-		<a data-toggle="modal" data-target="#dayModal" data-remote="<%= new_league_day_path(@league) %> #new_day_modal" class="btn btn-default btn-block">+ Day to <%=@league.name%></a><br>
+		<% if session[:remember_token] && session[:remember_token] == @league.user_id %>
+			<a data-toggle="modal" data-target="#dayModal" data-remote="<%= new_league_day_path(@league) %> #new_day_modal" class="btn btn-default btn-block">+ Day to <%=@league.name%></a>
+		<% end %><br>
+
+
+
+

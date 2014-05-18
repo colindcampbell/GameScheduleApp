@@ -10,4 +10,13 @@ module ApplicationHelper
     end
   end
 
+  def user_logged
+    if !current_user
+      false
+    else
+    	true
+    end
+  end
+
+
 end

@@ -6,14 +6,6 @@
 	    <h4 class="modal-title" id="myModalLabel">( Day ) <small> Edit <%= @day.date.strftime("%A, %b %d") %></small></h4>
 	</div>
 	<div class="modal-body">
-
-		 <% if @day.errors.any? %>
-		    <ul class="list-group">
-		      <% @day.errors.full_messages.each do |message| %>
-		        <li class="list-group-item list-group-item-danger"><%= message %></li>
-		      <% end %>
-		    </ul>
-		  <% end %>
 		
 		<%= form_for([@league,@day], :html => {:class => 'form-horizontal', :role => 'form'}) do |f| %>
 			<div class='form-group'>

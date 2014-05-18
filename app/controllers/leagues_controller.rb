@@ -1,6 +1,6 @@
 class LeaguesController < ApplicationController
 	before_action :set_league, only: [:edit, :update, :show, :destroy]
-	before_action :authenticate_user
+	before_action :authenticate_user, only: [:new, :create, :edit, :update, :destroy]
 
 	def index
 		@leagues = League.all
@@ -9,7 +9,7 @@ class LeaguesController < ApplicationController
 
 	def new
 		@league = League.new
-		#@league.user_id = current_user
+		
 	end
 
 	def show
@@ -21,6 +21,7 @@ class LeaguesController < ApplicationController
 
 	def create
 		@league = League.new(params.require(:league).permit(:name, :dates, :locations, :divisions))
+		@league.user_id = current_user.id
 		if @league.save
 			redirect_to @league
 		else
