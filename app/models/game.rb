@@ -55,6 +55,10 @@ class Game
     end
   end
 
+  def reverse_outcome
+    #If you delete the game it reverses reverts the record if the score was final and resets recorded to false
+  end
+
   # validate :teams_not_same
   # def teams_not_same()
   #   if self.home_team == self.away_team

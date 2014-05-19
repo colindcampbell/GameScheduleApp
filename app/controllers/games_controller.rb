@@ -46,6 +46,7 @@ class GamesController < ApplicationController
 	def destroy
 		@game = Game.find(params[:id])
 		@league = @game.league
+		#run reverse_outcome
 		@game.destroy
     	redirect_to @league
 	end
