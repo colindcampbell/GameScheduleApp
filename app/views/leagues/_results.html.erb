@@ -40,7 +40,7 @@
 	  					<% d.games.each do |g| %>
 								<% if session[:remember_token] && session[:remember_token] == @league.user_id %>
 								<a data-toggle="modal" data-target="#<%= g.id %>" data-remote="<%= edit_game_path(g) %> #edit_game_modal" class="btn btn-default btn-block list-group-item">
-									<center><h4 class="list-group-item-heading"><%= g.time %> @ <%= g.location %></h4>
+									<center><h4 class="list-group-item-heading"><%= g.time.strftime("%H:%M %p") %> @ <%= g.location %></h4>
 										<strong>(<%= g.home_score %>) <%= g.home_team.name %></strong>
 										<br>-vs-<br>
 										<strong>(<%= g.away_score %>) <%= g.away_team.name %></strong>
