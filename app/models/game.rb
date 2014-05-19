@@ -1,7 +1,7 @@
 class Game
   include Mongoid::Document
   field :location, type: String
-  field :time, type: String
+  field :time, type: Time, default:'12:00:00'
   field :sport, type: String
   field :overtime, type: Mongoid::Boolean
   field :home_score, type: Integer

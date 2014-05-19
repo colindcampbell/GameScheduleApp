@@ -7,7 +7,7 @@
 			<% if @leagues.any? %>
 				<% @leagues.sort{|a,b| a.user.name <=> b.user.name}.each do |l| %>
 					<div class="btn-group-vertical btn-group-justified">
-						<%= link_to "#{l.name} ( #{l.user.name} )", league_path(l.id), class: 'btn btn-default btn-block', id: 'myTitle' %>
+						<%= link_to "#{l.name} ( #{l.user.name} )", league_path(l.id), class: 'btn btn-default btn-block', id: 'leagueList' %>
 					</div>
 				<% end %>
 			<% else %>
