@@ -2,8 +2,8 @@ class League
   include Mongoid::Document
   field :name, type: String
   field :locations, type: String
-  field :start_date, type: Date
-  field :end_date, type: Date
+  field :start_date, type: Date, default: Date.today
+  field :end_date, type: Date, default: Date.today
   field :divisions, type: String
  
   has_many :days
