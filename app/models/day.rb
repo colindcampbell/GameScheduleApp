@@ -18,7 +18,6 @@ class Day
   	if existing_day
   		errors.add(:date, '( This date exists, please select another day )')
   	end
-
   end
 
 end

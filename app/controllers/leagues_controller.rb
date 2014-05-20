@@ -9,21 +9,19 @@ class LeaguesController < ApplicationController
 
 	def new
 		@league = League.new
-		
 	end
 
 	def show
-		@league = League.find(params[:id])
 		#For adding user specific leagues
 		#@leagues = League.where(:user_id => current_user)
-		@leagues = League.all
+		
 	end
 
 	def create
 		@league = League.new(params.require(:league).permit(:name, :start_date, :end_date, :locations, :divisions))
 		@league.user_id = current_user.id
 		if @league.save
-			redirect_to @league
+			redirect_to leagues_path
 		else
 			render 'new'
 		end
@@ -39,13 +37,14 @@ class LeaguesController < ApplicationController
 
 	def destroy
 		@league.destroy
-		redirect_to leagues_path
+		redirect_to leagues_path 
 	end
 
 
 	private
 	
 	def set_league
-		@league = League.find(params[:id])
+		#this line was @league = League.find(params[:id])
+		@league = League.find_by(name: params[:id].gsub(/_/, " "))
 	end
 end

@@ -1,22 +1,22 @@
 <span class="btn btn-default btn-block" data-toggle="collapse" data-target="#standings">
-				<p id ="myTitle" name="standingsTitle">( Standings )</p>
-			</span>
-			<div id="standings" class="collapse in">
+	<p id ="myTitle" name="standingsTitle">( Standings )</p>
+</span>
+	<div id="standings" class="collapse in">
 				
-					<% Team.sorted(@league.id).each do |t| %>
-						<a data-toggle="modal" data-target="#<%= t.id %>" data-remote="<%= team_path(t) %> #view_team_modal" class="btn btn-default btn-block list-group-item">
-							<center><strong>(<%= t.wins %>)-(<%= t.losses %>)</strong> <%= t.name %></center>
-						</a>
-						<div class="modal fade" id="<%= t.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-						  <div class="modal-dialog modal-sm">
-						    <div class="modal-content">
-						    </div>
-						  </div>
-						</div>
-					<% end %>
-				
+		<% Team.sorted(@league.id).each do |t| %>
+			<a data-toggle="modal" data-target="#<%= t.id %>" data-remote="<%= team_path(t) %> #view_team_modal" class="btn btn-default btn-block list-group-item">
+				<center><strong>(<%= t.wins %>)-(<%= t.losses %>)</strong> <%= t.name %></center>
+			</a>
+			<div class="modal fade" id="<%= t.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			  <div class="modal-dialog modal-sm">
+			    <div class="modal-content">
+			    </div>
+			  </div>
 			</div>
-			<% if session[:remember_token] && session[:remember_token] == @league.user_id %>
-				<a data-toggle="modal" data-target="#teamModal" data-remote="<%= new_league_team_path(@league) %> #new_team_modal" class="btn btn-default btn-block">+ Team to <%=@league.name%></a>
-			<% end %>
-			<br>
+		<% end %>
+
+	</div>
+	<% if session[:remember_token] && session[:remember_token] == @league.user_id %>
+	<a data-toggle="modal" data-target="#teamModal" data-remote="<%= new_league_team_path(@league) %> #new_team_modal" class="btn btn-default btn-block">+ Team to <%=@league.name%></a>
+	<% end %>
+	<br>

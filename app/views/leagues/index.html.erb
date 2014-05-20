@@ -1,18 +1,44 @@
-
 <div class="container-fluid">
 	<div class="row">
-		<div class="col-md-3"></div>
-		<div class="col-md-6">
+		
+		<div class="col-sm-3"></div>
+		<div class="col-sm-6">
 
-			<% if @leagues.any? %>
-				<% @leagues.sort{|a,b| a.user.name <=> b.user.name}.each do |l| %>
-					<div class="btn-group-vertical btn-group-justified">
-						<%= link_to "#{l.name} ( #{l.user.name} )", league_path(l.id), class: 'btn btn-default btn-block', id: 'leagueList' %>
+			<% if flash[:notice] %>
+  			<div class="alert alert-success"><%= flash[:notice] %></div>
+			<% end %>
+
+			<% if session[:remember_token] && League.where(:user_id => current_user.id).any? %>
+				<% League.where(:user_id => current_user.id).each do |l| %>
+					<div class="list-group-item">
+						<%= link_to "( #{l.name} )", league_path(id: l.name.gsub(/ /,"_")), class: 'btn btn-default btn-block', id: 'leagueList' %>
+					<center>This League's URL is:<br>
+						rummle.herokuapp.com/leagues/<%= l.name.gsub(/ /,"_") %>
+					</center>
 					</div>
 				<% end %>
-			<% else %>
+			<% elsif !session[:remember_token]%>
 
-				<h2><i><center>There are no leagues</center></i></h2>
+				<div class="container-fluid">
+					<div class="row" id="indexDirections">
+						<div class="col-sm-offset-1" style="padding-left:15px">
+						<h2><i>Run Leagues the Easy Way</i></h2>
+						<h3>( 1 ) <small style="color:white">Sign up and create a league.</small></h3>
+						<h3>( 2 ) <small style="color:white">Add teams to your league.</small></h3>
+						<h3>( 3 ) <small style="color:white">Add days to your schedule.</small></h3>
+						<h3>( 4 ) <small style="color:white">Add games to your days.</small></h3>
+						<h3>( 5 ) <small style="color:white">Update final scores for your games.</small></h3>
+						<br>
+						</div>
+					</div>
+					<br>
+					<div class="row">
+						<div class="col-lrg-6" style="float:right">
+							<a data-toggle="modal" class="btn btn-default btn-lrg" data-target="#userModal" data-remote="<%= new_user_path(current_user) %> #new_user_modal" >Sign Up</a>
+							<a data-toggle="modal" class="btn btn-default btn-lrg" data-target="#signinModal" data-remote="<%= new_session_path(current_user) %> #new_session_modal">Sign In</a>
+						</div>
+					</div>
+				</div>
 
 			<% end %>
 
@@ -21,7 +47,7 @@
 			<% end %>
 				
 		</div>
-		<div class="col-md-3"></div>
+		<div class="col-sm-3"></div>
 	</div>
 </div>
 		
@@ -46,4 +72,3 @@
     </div>
   </div>
 </div>
-
