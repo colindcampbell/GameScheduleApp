@@ -18,7 +18,7 @@ class LeaguesController < ApplicationController
 	end
 
 	def create
-		@league = League.new(params.require(:league).permit(:name, :start_date, :end_date, :locations, :divisions))
+		@league = League.create(params.require(:league).permit(:name, :start_date, :end_date, :locations, :divisions))
 		@league.user_id = current_user.id
 		if @league.save
 			redirect_to leagues_path
@@ -39,7 +39,6 @@ class LeaguesController < ApplicationController
 		@league.destroy
 		redirect_to leagues_path 
 	end
-
 
 	private
 	

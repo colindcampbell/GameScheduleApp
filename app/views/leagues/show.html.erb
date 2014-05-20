@@ -23,8 +23,8 @@
 							</div>
 							<div class="btn-group btn-group-justified">
 							  <div class="btn-group">
-									<button data-toggle="modal" data-target="#<%= l.id %>league" data-remote="<%= edit_league_path(l.name.gsub(/ /,"_")) %> #edit_league_modal" class="btn btn-default" >
-										<span class="glyphicon glyphicon-edit"></span>
+									<button data-toggle="modal" data-target="#<%= l.id %>league" data-remote="<%= edit_league_path(l.name.gsub(/ /,"_")) %> #edit_league_modal" class="btn btn-success" >
+										<span >Edit</span>
 									</button>
 									<div class="modal fade" id="<%= l.id %>league" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 									  <div class="modal-dialog">
@@ -34,7 +34,7 @@
 									</div>
 							  </div>
 							  <div class="btn-group">
-							    <button type="button" class="btn btn-default"><%= link_to 'Delete', l.name.gsub(/ /,"_"), method: :delete, data: {confirm: "Are you sure you want to delete #{l.name}"}%></button>
+							    <%= link_to 'Delete', l.name.gsub(/ /,"_"), method: :delete, class: "btn btn-danger", data: {confirm: "Are you sure you want to delete #{l.name}"}%>
 							  </div>
 							</div>
 
