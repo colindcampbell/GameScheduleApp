@@ -19,7 +19,7 @@ class GamesController < ApplicationController
 		@game.day = @@day
 	    @game.save
 		if @game.save
-			redirect_to league_path(id: @league.name.gsub(/ /,"_"))
+			redirect_to league_path(id: @league.name.gsub(/ /,"-"))
 		else
 			render 'new'
 		end
@@ -28,7 +28,7 @@ class GamesController < ApplicationController
 	def edit
 		@game = Game.find(params[:id])
 		@l = @game.league
-    	@teams = @l.teams
+    @teams = @l.teams
 	end
 
 	def update
@@ -37,7 +37,7 @@ class GamesController < ApplicationController
   	@teams = @l.teams
     if @game.update(params.require(:game).permit(:location, :time, :sport, :home_team_id, :home_score, :away_team_id, :away_score, :final))
       @game.outcome
-      redirect_to league_path(id: @game.league.name.gsub(/ /,"_"))
+      redirect_to league_path(id: @game.league.name.gsub(/ /,"-"))
     else
       render 'edit'
     end
@@ -48,7 +48,7 @@ class GamesController < ApplicationController
 		@league = @game.league
 		#run reverse_outcome
 		@game.destroy
-    	redirect_to league_path(id: @league.name.gsub(/ /,"_"))
+    	redirect_to league_path(id: @league.name.gsub(/ /,"-"))
 	end
 
 	

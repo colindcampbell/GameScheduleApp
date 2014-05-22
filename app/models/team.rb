@@ -11,7 +11,7 @@ class Team
 
   belongs_to :league
 
-  validates_presence_of :name, message:'( this team needs a name )'
+  validates_presence_of :name, message:' must be present for each team'
 
 
   #on the show page we call this method with the league ID when we are listing the teams with the each loop. It sorts the list by win percentage 

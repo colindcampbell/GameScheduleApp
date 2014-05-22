@@ -2,9 +2,17 @@
 <div id="new_game_modal">
 	<div class="modal-header">
 	    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-	    <h4 class="modal-title" id="myModalLabel">( New Game ) <small> Add a game to <%= Day.find(params[:day_id]).date.strftime("%A, %b %d") %> </small></h4>
+	    <h4 class="modal-title" id="myModalLabel">( New Game ) <% if !@game.errors.any? %><small> Add a game to <%= Day.find(params[:day_id]).date.strftime("%A, %b %d") %> </small><%end%></h4>
 	</div>
 	<div class="modal-body">
+
+		<% if @game.errors.any? %>
+		    <ul class="list-group">
+		      <% @game.errors.full_messages.each do |message| %>
+		        <li class="list-group-item list-group-item-danger col-sm-offset-1"><%= message %></li>
+		      <% end %>
+		    </ul>
+		  <% end %>
 		
 		<%= form_for([@league,@game], :html => {:class => 'form-horizontal', :role => 'form'}) do |f| %>
 			<div class='form-group'>
@@ -33,8 +41,13 @@
 			</div>
 			<div class='form-group'>
 				<div class="col-sm-offset-2 col-sm-10">
-					<right><%= f.submit "Submit", :class => 'btn btn-info' %>
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button></right>
+					<% if @game.errors.any? %>
+						<%= f.submit "Submit", :class => 'btn btn-info' %>
+						<%= link_to "Back", league_path(id: @league.name.gsub(/ /,"-")), :class => 'btn btn-default' %>
+					<% else %>
+						<%= f.submit "Submit", :class => 'btn btn-info' %>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					<% end %>
 				</div>
 			</div>
 		<% end %>

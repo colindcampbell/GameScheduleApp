@@ -16,7 +16,7 @@
 		<% end %>
 
 	</div>
-	<% if session[:remember_token] && session[:remember_token] == @league.user_id %>
+	<% if current_user && current_user.id == @league.user_id %>
 	<a data-toggle="modal" data-target="#teamModal" data-remote="<%= new_league_team_path(@league) %> #new_team_modal" class="btn btn-default btn-block">+ Team to <%=@league.name%></a>
 	<% end %>
 	<br>

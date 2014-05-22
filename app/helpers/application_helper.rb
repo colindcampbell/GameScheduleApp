@@ -1,5 +1,6 @@
 module ApplicationHelper
 	
+  #in views change to current_user
 	def current_user
     @current_user ||= session[:remember_token] && User.find(session[:remember_token])
   end

@@ -5,7 +5,7 @@
 	<% @league.days.sort_by{|dt| dt.date}.reverse.each do |d| %>
 
 		<% if d.date < Date.today %>
-			<% if session[:remember_token] && session[:remember_token] == @league.user_id %>
+			<% if current_user && current_user.id == @league.user_id %>
 				<div class="btn-group btn-group-justified">
 					<div class="btn-group" style="width:66%">
 						<button class="btn btn-warning btn-lrg" data-toggle="collapse" data-target="#<%=d.date%>" >
@@ -38,7 +38,7 @@
 			<div id="<%=d.date%>" class="collapse out">
 
 				<% d.games.sort{|a,b| a.time <=> b.time}.each do |g| %>
-					<% if session[:remember_token] && session[:remember_token] == @league.user_id %>
+					<% if current_user && current_user.id == @league.user_id %>
 					<a data-toggle="modal" data-target="#<%= g.id %>" data-remote="<%= edit_game_path(g) %> #edit_game_modal" class="btn btn-default btn-block list-group-item">
 						<center><h5 class="list-group-item-heading"><%= g.time.strftime("%l:%M %p") %> @ <%= g.location %></h5>
 							<strong>(<%= g.home_score %>) <%= g.home_team.name %></strong>
@@ -63,7 +63,7 @@
 				<% end %>
 			<% end %>
 				
-				<% if session[:remember_token] && session[:remember_token] == @league.user_id %>
+				<% if current_user && current_user.id == @league.user_id %>
 					<a data-toggle="modal" data-target="#<%= d.id %>game" data-remote="<%= new_league_game_path(:league_id => @league.id, :day_id => d.id) %> #new_game_modal" class="btn btn-default btn-block list-group-item">
 						+ Game to <%= d.date.strftime("%A, %b %d") %>
 					</a>

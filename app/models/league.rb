@@ -12,7 +12,7 @@ class League
   belongs_to :user
 
   validates_uniqueness_of :name, message: " taken please choose another name"
-  validates_presence_of :name, message: " Your league must have a unique name"
+  validates_presence_of :name, message: ": Your league must have a unique name"
   before_destroy :destroy_children
 
   def destroy_children

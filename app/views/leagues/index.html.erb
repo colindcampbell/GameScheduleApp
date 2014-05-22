@@ -11,9 +11,9 @@
 			<% if session[:remember_token] && League.where(:user_id => current_user.id).any? %>
 				<% League.where(:user_id => current_user.id).each do |l| %>
 					<div class="list-group-item" style="background-color:#ccc;overflow:scroll">
-						<%= link_to "( #{l.name} )", league_path(id: l.name.gsub(/ /,"_")), class: 'btn btn-default btn-block', id: 'leagueList' %>
+						<%= link_to "( #{l.name} )", league_path(id: l.name.gsub(/ /,"-")), class: 'btn btn-default btn-block', id: 'leagueList' %>
 					<center>League URL:<br>
-						rummle.herokuapp.com/leagues/<%= l.name.gsub(/ /,"_") %>
+						rummle.herokuapp.com/leagues/<%= l.name.gsub(/ /,"-") %>
 					</center>
 					</div>
 				<% end %>

@@ -1,6 +1,6 @@
 class Day
   include Mongoid::Document
-  field :date, type: Date
+  field :date, type: Date, default: Date.today
 
   belongs_to :league
   has_many :games
@@ -11,6 +11,7 @@ class Day
      Game.where(day_id: self.id).destroy_all
   end
 
+  validates_presence_of :date, message: " must be present"
   validate :current_date
 
   def current_date

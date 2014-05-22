@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
       flash[:notice] = "#{@user.name} you have signed up successfully"
-      session[:remember_token] = @user.id.to_s
+      session[:remember_token] = @user
       redirect_to :root
     else
       render :new

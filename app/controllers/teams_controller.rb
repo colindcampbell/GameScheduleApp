@@ -17,7 +17,7 @@ class TeamsController < ApplicationController
 		@league = League.find(params[:league_id])
 		@team = @league.teams.build(params.require(:team).permit(:name, :coach, :home_city))
 		if @team.save
-			redirect_to league_path(id: @league.name.gsub(/ /,"_"))
+			redirect_to league_path(id: @league.name.gsub(/ /,"-"))
 		else
 			render 'new'
 		end
@@ -37,7 +37,7 @@ class TeamsController < ApplicationController
 	def destroy
 		@league = @team.league
 		@team.destroy
-		redirect_to league_path(id: @league.name.gsub(/ /,"_"))
+		redirect_to league_path(id: @league.name.gsub(/ /,"-"))
 	end
 
 	private

@@ -44,6 +44,6 @@ class LeaguesController < ApplicationController
 	
 	def set_league
 		#this line was @league = League.find(params[:id])
-		@league = League.find_by(name: params[:id].gsub(/_/, " "))
+		@league = League.find_by(name: params[:id].gsub(/-/, " "))
 	end
 end

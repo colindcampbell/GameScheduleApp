@@ -18,7 +18,7 @@ class DaysController < ApplicationController
     @league = League.find(params[:league_id])
     @day = @league.days.build(params.require(:day).permit(:date))
     if @day.save
-      redirect_to league_path(id: @league.name.gsub(/ /,"_"))
+      redirect_to league_path(id: @league.name.gsub(/ /,"-"))
     else
       render 'new'
     end
@@ -31,7 +31,7 @@ class DaysController < ApplicationController
   def update
     @day = Day.find(params[:id])
     if @day.update(params.require(:day).permit(:date))
-      redirect_to league_path(id: @day.league.name.gsub(/ /,"_"))
+      redirect_to league_path(id: @day.league.name.gsub(/ /,"-"))
     else
       render 'edit'
     end
@@ -41,6 +41,6 @@ class DaysController < ApplicationController
     @day = Day.find(params[:id])
     @league = @day.league
     @day.destroy
-    redirect_to league_path(id: @league.name.gsub(/ /,"_"))
+    redirect_to league_path(id: @league.name.gsub(/ /,"-"))
    end
 end

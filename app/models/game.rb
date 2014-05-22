@@ -8,6 +8,8 @@ class Game
   field :away_score, type: Integer
   field :recorded, type: Mongoid::Boolean, default:false
   field :final, type: Mongoid::Boolean, default:false
+
+  validates_presence_of :time, message: ": Games must have a time"
   #A = away_team win
   #H = home_team win
   #a = away_team win in OT
