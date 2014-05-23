@@ -15,7 +15,7 @@
 					<% League.where(:user_id => current_user.id).each do |l| %>
 					
 						<div class="btn-group-vertical btn-group-justified">
-							<%= link_to l.name, league_path(l), class: 'btn btn-default btn-block', id: 'leagueList' %>
+							<%= link_to l.name, league_path(l.name.gsub(/ /,"-")), class: 'btn btn-default btn-block', id: 'leagueList' %>
 						</div>
 							<div class="list-group-item">
 									<strong class="list-group-item-text">This league runs from <%= l.start_date.strftime("%A, %b %d") if l.start_date %> through <%= l.end_date.strftime("%A, %b %d") if l.end_date %>. Games will be played at <%=l.locations%>.</strong>

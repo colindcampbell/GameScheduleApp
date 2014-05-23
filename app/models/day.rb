@@ -1,9 +1,11 @@
 class Day
   include Mongoid::Document
   field :date, type: Date, default: Date.today
+  
 
   belongs_to :league
   has_many :games
+ 
 
   before_destroy :destroy_games
 

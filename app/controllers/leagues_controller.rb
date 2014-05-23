@@ -1,5 +1,5 @@
 class LeaguesController < ApplicationController
-	before_action :set_league, only: [:edit, :update, :show, :destroy]
+	before_action :set_league, only: [:edit, :show, :destroy]
 	
 
 	def index
@@ -21,6 +21,9 @@ class LeaguesController < ApplicationController
 		@league = League.create(params.require(:league).permit(:name, :start_date, :end_date, :locations, :divisions))
 		@league.user_id = current_user.id
 		if @league.save
+			@first = @league.start_date
+			@last = @league.end_date
+			create_days(@league, @first, @last)
 			redirect_to leagues_path
 		else
 			render 'new'
@@ -28,8 +31,9 @@ class LeaguesController < ApplicationController
 	end
 
 	def update
+		@league = League.find(params[:id])
 		if @league.update_attributes(params.require(:league).permit(:name, :start_date, :end_date, :locations, :divisions))
-			redirect_to @league
+			redirect_to league_path(id: @league.name.gsub(/ /,"-"))
 		else
 			render 'edit'
 		end
