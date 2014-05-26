@@ -3,12 +3,12 @@
 </span>
 <div id="scheduleUpcoming" class="collapse in">
 
-	<% Day.where(league_id: @league.id).sort_by{|dt| dt.date}.uniq{|dm| dm.date.month}.each do |m| %>
+	<% Day.where(league_id: @league.id).sort_by{|dt| dt.date}.uniq{|dm| dm.date.strftime("%Y%m")}.each do |m| %>
 
-		<% if m.date.month >= Date.today.month %>
+		<% if m.date.strftime("%Y%m%%d") >= Date.today.strftime("%Y%m%%d") %>
 
 			<span class="btn btn-default btn-block" data-toggle="collapse" data-target="#<%=m.date.month%>">
-				<p id="monthTitle" name="scheduleTitle"><%= m.date.strftime("%B") %></p>
+				<p id="monthTitle" name="scheduleTitle"><%= m.date.strftime("%B") %> <span style="color:#aaa; font-size:18px"><%=m.date.strftime("%Y")%></span></p>
 			</span>
 			<div id="<%=m.date.month%>" class="collapse out">
 
