@@ -7,10 +7,10 @@
 
 		<% if m.date.strftime("%Y%m%%d") >= Date.today.strftime("%Y%m%%d") %>
 
-			<span class="btn btn-default btn-block" data-toggle="collapse" data-target="#<%=m.date.month%>">
+			<span class="btn btn-default btn-block" data-toggle="collapse" data-target="#<%=m.date.strftime("%Y%m")%>">
 				<p id="monthTitle" name="scheduleTitle"><%= m.date.strftime("%B") %> <span style="color:#aaa; font-size:18px"><%=m.date.strftime("%Y")%></span></p>
 			</span>
-			<div id="<%=m.date.month%>" class="collapse out">
+			<div id="<%=m.date.strftime("%Y%m")%>" class="collapse out">
 
 				<% @league.days.sort_by{|dt| dt.date}.each do |d| %>
 
