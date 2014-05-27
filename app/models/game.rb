@@ -4,8 +4,8 @@ class Game
   field :time, type: Time, default:'12:00:00'
   field :sport, type: String
   field :overtime, type: Mongoid::Boolean
-  field :home_score, type: Integer
-  field :away_score, type: Integer
+  field :home_score, type: Integer, default: 0
+  field :away_score, type: Integer, default: 0
   field :recorded, type: Mongoid::Boolean, default:false
   field :final, type: Mongoid::Boolean, default:false
 

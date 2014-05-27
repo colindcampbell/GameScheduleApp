@@ -42,11 +42,11 @@
 			<div class='form-group'>
 				<div class="col-sm-offset-3 col-sm-9">
 					<% if @league.errors.any? %>
-						<%= l.submit "Submit", :class => 'btn btn-info' %>
-						<%= link_to "Back", leagues_path, :class => 'btn btn-default' %>
+						<%= l.submit "Submit", :class => 'btn btn-info', style: 'width:20%' %>
+						<%= link_to "Back", leagues_path, :class => 'btn btn-default', style: 'width:20%'  %>
 					<% else %>
-						<%= l.submit "Submit", :class => 'btn btn-info' %>
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<%= l.submit "Submit", :class => 'btn btn-info', style: 'width:20%'  %>
+						<button type="button" class="btn btn-default" style="width:20%" data-dismiss="modal">Close</button>
 					<% end %>
 				</div>
 			</div>

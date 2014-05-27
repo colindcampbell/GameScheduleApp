@@ -14,6 +14,7 @@ class LeaguesController < ApplicationController
 	def show
 		#For adding user specific leagues
 		#@leagues = League.where(:user_id => current_user)
+		@games = Game.all
 		
 	end
 

@@ -28,6 +28,11 @@ module ApplicationHelper
     end
   end
 
+  def result(team)
+    if self.final && self.home_score > self.away_score
+      
+  end
+
   # def month_list(league)
   #   current_month = league.start_date.month
   #   current_month

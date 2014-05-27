@@ -34,13 +34,13 @@ class GamesController < ApplicationController
 	def update
 		@game = Game.find(params[:id])
 		@l = @game.league
-  	@teams = @l.teams
-    if @game.update(params.require(:game).permit(:location, :time, :sport, :home_team_id, :home_score, :away_team_id, :away_score, :final))
-      @game.outcome
-      redirect_to league_path(id: @game.league.name.gsub(/ /,"-"))
-    else
-      render 'edit'
-    end
+  		@teams = @l.teams
+    	if @game.update(params.require(:game).permit(:location, :time, :sport, :home_team_id, :home_score, :away_team_id, :away_score, :final))
+     	 	@game.outcome
+      		redirect_to league_path(id: @game.league.name.gsub(/ /,"-"))
+    	else
+      		render 'edit'
+    	end
 	end
 
 	def destroy
