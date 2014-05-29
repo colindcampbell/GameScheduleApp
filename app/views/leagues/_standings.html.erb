@@ -9,7 +9,7 @@
 
 			<div class="btn-group btn-group-justified">
 				<div class="btn-group" style="width:83%">
-					<button class="btn btn-success" data-toggle="collapse" data-target="#<%=t.id%>team" >
+					<button class="btn btn-info" data-toggle="collapse" data-target="#<%=t.id%>team" >
 						<center><strong>(<%= t.wins %>)-(<%= t.losses %>)</strong> <%= t.name %></center>
 					</button>
 				</div>
@@ -32,11 +32,11 @@
 					
 					<% if g.home_team_id == t.id %>
 						<div class="list-group-item">
-						<center>
-						<%= g.day.date.strftime("%A, %b %d") %><br>
-						<%= g.time.strftime("%l:%M %p") %> @ <%= g.location %><br>
-						(<%= g.home_score %>) <%= t.name %> vs (<%= g.away_score %>) <%= g.away_team.name %>
-						</center>
+							<center>
+							<%= g.day.date.strftime("%A, %b %d") %><br>
+							<%= g.time.strftime("%l:%M %p") %> @ <%= g.location %><br>
+							(<%= g.home_score %>) <%= t.name %> vs (<%= g.away_score %>) <%= g.away_team.name %>
+							</center>
 						</div>
 					<% elsif g.away_team_id == t.id %>
 						<div class="list-group-item">
