@@ -52,9 +52,7 @@
 									<% if current_user && current_user.id == @league.user_id %>
 									<a data-toggle="modal" data-target="#<%= g.id %>" data-remote="<%= edit_game_path(g) %> #edit_game_modal" class="btn btn-default btn-block list-group-item">
 										<center><h5 class="list-group-item-heading"><%= g.time.strftime("%l:%M %p") %> @ <%= g.location %></h5>
-											<strong>(<%= g.home_score %>) <%= g.home_team.name %></strong>
-											<br>-vs-<br>
-											<strong>(<%= g.away_score %>) <%= g.away_team.name %></strong>
+											
 										</center>
 									</a>
 									<div class="modal fade" id="<%= g.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">

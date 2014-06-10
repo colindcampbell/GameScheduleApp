@@ -19,9 +19,11 @@
 			<div class="row">
 				<div class="col-12" style="float:right">
 					<% if current_user && current_user.id == @team.league.user_id %>
-						<button type="button" class="btn btn-group btn-info" data-dismiss="modal" style="width:26%">Edit</button>
-						<%= link_to 'Delete', @team, method: :delete, class: 'btn btn-group btn-danger', style: 'width:35%', data: {confirm: "Are you sure you want to delete #{@team.name}"} %>
-						<button type="button" class="btn btn-default" style="width:32%" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-group btn-info" data-dismiss="modal" style="width:50px">Edit</button>
+						<% if @team.wins == 0 && @team.losses == 0 %>
+							<%= link_to 'Delete', @team, method: :delete, class: 'btn btn-group btn-danger', style: 'width:70px', data: {confirm: "Are you sure you want to delete #{@team.name}"} %>
+						<% end %>
+						<button type="button" class="btn btn-default" style="width:60px" data-dismiss="modal">Close</button>
 					<% else %>
 						<button type="button" class="btn btn-group btn-default" style="width:100%" data-dismiss="modal">Close</button>
 					<% end %>
